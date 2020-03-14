@@ -1,0 +1,29 @@
+---
+title: "NBA Statistics 2020"
+author: "Larry Chen"
+date: "3/14/2020"
+output: pdf_document
+---
+
+```{r}
+library(tidyverse)
+```
+```{r}
+team <- read_csv("latest_RAPTOR_by_team.csv")
+```
+
+
+```{r}
+topminutes <- team %>%
+  arrange(desc(mp)) %>% 
+  slice(1:10)
+
+topminutes
+ggplot(topminutes, aes(x = reorder(player_name, mp), y = mp)) +
+  geom_col(fill = "orange") + 
+  coord_flip() +
+  labs(title = "2019-20 Restaurant Checkin Amount", y = "Checkin Amount", x = "Restaurants") +
+  theme_bw()
+```
+
+
